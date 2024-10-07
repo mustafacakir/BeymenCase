@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>BeymenCase.Service_A</RootNamespace>
+    <UserSecretsId>aeaa4662-37a1-4ab1-be19-13f4d925a8a9</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BeymenCase.Configurations\BeymenCase.Configurations.csproj" />
+    <ProjectReference Include="..\BeymenCase.Entities\BeymenCase.Core.csproj" />
+  </ItemGroup>
+
+</Project>

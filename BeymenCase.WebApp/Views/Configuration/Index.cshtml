@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BeymenCase.Core.Entities.ConfigurationRecord>
+
+<h2>Configuration List</h2>
+
+<div class="mb-3">
+    <input type="text" id="searchInput" class="form-control" placeholder="Search by Name..." />
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+            <th>Type</th>
+            <th>IsActive</th>
+            <th>ApplicationName</th>
+            <th></th> <!-- For action buttons like edit/delete -->
+        </tr>
+    </thead>
+    <tbody id="configTableBody">
+        @foreach (var config in Model)
+        {
+            <tr>
+                <td>@config.Name</td>
+                <td>@config.Value</td>
+                <td>@config.Type</td>
+                <td>@(config.IsActive ? "Active" : "Inactive")</td>
+                <td>@config.ApplicationName</td>
+                <td>
+                    <a asp-controller="Configuration" asp-action="Update"
+                       asp-route-applicationName="@config.ApplicationName"
+                       asp-route-id="@config.Id"
+                       class="btn btn-primary">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Configuration" asp-action="Create" class="btn btn-success">Create New Configuration</a>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#searchInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#configTableBody tr").filter(function () {                
+                $(this).toggle($(this).children("td").first().text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+    });
+</script>

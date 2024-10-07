@@ -1,0 +1,35 @@
+﻿version: '3.4'
+
+services:
+  beymencase.webapp:
+    image: ${DOCKER_REGISTRY-}beymencasewebapp
+    build:
+      context: .
+      dockerfile: BeymenCase.WebApp/Dockerfile
+    ports:
+      - "5000:5000" 
+    depends_on:
+      - redis
+      - rabbitmq
+
+  beymencase.service-a:
+    image: ${DOCKER_REGISTRY-}beymencaseservicea
+    build:
+      context: .
+      dockerfile: BeymenCase.SERVICE-A/Dockerfile
+    ports:
+      - "4000:4000" 
+    depends_on:
+      - redis
+      - rabbitmq
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379" 
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"  
+      - "15672:15672" 

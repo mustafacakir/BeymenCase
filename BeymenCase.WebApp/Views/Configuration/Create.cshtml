@@ -1,0 +1,34 @@
+﻿@model BeymenCase.Core.Entities.ConfigurationRecord
+
+
+<h1>Create Configuration</h1>
+
+<form method="post" asp-controller="Configuration" asp-action="Create">
+    <div class="form-group">
+        <label asp-for="ApplicationName"></label>
+        <input asp-for="ApplicationName" class="form-control" />
+        <span asp-validation-for="ApplicationName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Type"></label>
+        <input asp-for="Type" class="form-control" />
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Value"></label>
+        <input asp-for="Value" class="form-control" />
+        <span asp-validation-for="Value" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IsActive"></label>
+        <input asp-for="IsActive" type="checkbox" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Configuration</button>
+</form>
+
+<a asp-controller="Configuration" asp-action="Index">Back to List</a>
