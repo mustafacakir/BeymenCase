@@ -1,9 +1,8 @@
-Giriş
+Giriş:
 Bu doküman, dinamik bir konfigürasyon yapısına sahip bir kütüphane uygulamasının geliştirilmesini açıklamaktadır. Projenin amacı, uygulama yapılandırmalarının Redis ortamından okunarak web.config veya app.config dosyaları gibi geleneksel yapıların yerine kullanılabilir olmasıdır. Bu yapı, herhangi bir deployment, restart veya recycle gerektirmeden konfigürasyonların güncellenebilmesini sağlar.
 
-Amaç
+Amaç:
 Yazılan kütüphanenin hedefleri şunlardır:
-
 Farklı uygulamalar için, örneğin "SERVICE-A" ve "SERVICE-B", ilgili yapılandırma kayıtlarının depolama ortamından dinamik olarak okunması.
 Belirli tiplerdeki (string, boolean, integer, double) konfigürasyon değerlerinin okunması ve yönetilmesi.
 Depolama ortamında yalnızca aktif olan konfigürasyonların getirilmesi.
@@ -11,7 +10,7 @@ Belirli aralıklarla yapılandırma kayıtlarının güncellenip güncellenmedi�
 Web, WCF, Web API gibi farklı proje türleri için entegre edilebilecek bir yapı.
 Web arayüzü üzerinden yapılandırma kayıtlarının listelenmesi, güncellenmesi ve yeni kayıt eklenebilmesi.
 
-Kütüphane Detayları
+Kütüphane Detayları:
 Kütüphane, farklı servislerin yalnızca kendi konfigürasyon kayıtlarına erişebileceği bir yapı sunar. Bu yapı, dışarıya üç parametre ile initialize edilebilecek bir ConfigurationReader sınıfı sağlar:
 
 var _configurationReader = new ConfigurationReader(applicationName, connectionString, refreshTimerIntervalInMs);
@@ -25,7 +24,7 @@ Bu yöntem, belirli bir anahtar ismine karşılık gelen konfigürasyon değerin
 var siteName = _configurationReader.GetValue<string>("SiteName");
 Bu kullanım sonucunda, siteName değişkeni "boyner.com.tr" değerini alır.
 
-Özellikler
+Özellikler:
 Dinamik Konfigürasyon Yükleme:
 Kütüphane, redis ortamından kayıtları yükler ve bunları uygun tiplerde (int, string, boolean, double) döndürür.
 Yalnızca IsActive değeri 1 olan kayıtlar döndürülür.
@@ -48,7 +47,7 @@ var maxItemCount = _configurationReader.GetValue<int>("MaxItemCount");
 Web Arayüzü:
 Kullanıcı arayüzünden konfigürasyon kayıtlarını listeleyebilir, düzenleyebilir veya yenilerini ekleyebilirsiniz. Arayüz, uygulama adına göre kayıtları filtreleyebilir.
 
-Teknik Detaylar
+Teknik Detaylar:
 Kütüphane .NET 5 kullanılarak geliştirilmiştir.
 Veritabanı bağlantısı ConnectionString parametresiyle sağlanır.
 Kütüphane ID, Name, Type, Value, IsActive, ApplicationName alanlarını barındıran konfigürasyon kayıtları üzerinde çalışır.
